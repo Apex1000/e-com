@@ -26,7 +26,7 @@ SECRET_KEY = 'dl*a+=^lcla=j&c-ool@x_%rp_&#beydp012=md(&ha67_uu^5'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+AUTH_USER_MODEL = "authentication.User"
 
 # Application definition
 
@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'authentication',
+    "widget_tweaks",
+    
 ]
 
 MIDDLEWARE = [

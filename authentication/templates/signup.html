@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="csrf-token" content="lVbCfqxAwD3YVqtRhqMEKpApGogTj4ebn28uR8Na">
+  <title>Login</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body class="grey lighten-3">
+<!--Main layout-->
+    <div class="container-fluid mt-5">
+      <div class="col-md-12 col-lg-6 col-xl-4 mx-auto mb-4">
+        <section class="form-gradient">
+            <div class="card z-depth-5" style="margin-top: 150px;">
+                <!--Header-->
+                <div class="header pt-3 danger-color">
+
+                    <div class="row d-flex justify-content-center">
+                        <h3 class="white-text mb-3 pt-3 font-weight-bold"><i class="far fa-user"></i>&nbsp;Sign up</h3>
+                    </div>
+                </div>
+                <!--Header-->
+                <div class="card-body mx-4 mt-4">
+                    <!--Body-->
+                    <form enctype="multipart/form-data" method="POST" novalidate>
+                        {% csrf_token %}
+                        {% include 'inside/inside_form.html' with form=form %}
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+      </div>
+    </div>
+  <!--Main layout-->
+  <!-- JQuery -->
+<script type="text/javascript">
+  // Animations initialization
+    new WOW().init();
+  $(document).ready(function () {
+
+});
+</script>
+</body>
+<script>'undefined'=== typeof _trfq || (window._trfq = []);'undefined'=== typeof _trfd && (window._trfd=[]),_trfd.push({'tccl.baseHost':'secureserver.net'}),_trfd.push({'ap':'cpbh'},{'server':'sg3plvcpnl357299'}) // Monitoring performance to make your website faster. If you want to opt-out, please contact web hosting support.</script><script src='https://img1.wsimg.com/tcc/tcc_l.combined.1.0.6.min.js'></script></html>
