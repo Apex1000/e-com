@@ -8,5 +8,4 @@ urlpatterns = [
     path("login/", Login, name="admin_login"),
     path("logout/", LogoutUser, name="admin_logout"),
     path("sign-up/", newusers, name="admin_new_users"),
-    path("", index, name="admin_index"),
 ]
