@@ -78,7 +78,7 @@ class OrderItem(models.Model):
         return self.quantity * self.item.unitPrice
 
     def get_total_discount_item_price(self):
-        return self.quantity * self.item.unitPrice
+        return self.quantity * self.item.discountPrice
 
     def get_amount_saved(self):
         return self.get_total_item_price() - self.get_total_discount_item_price()
@@ -131,6 +131,12 @@ class Order(models.Model):
 
     def __str__(self):
         return self.user.email
+    
+    def get_gst(self):
+        total = 0
+        for order_item in self.items.all():
+            total += order_item.get_total_item_price()
+        return (float(total)*0.18)
 
     def get_total(self):
         total = 0
@@ -138,7 +144,18 @@ class Order(models.Model):
             total += order_item.get_final_price()
         if self.coupon:
             total -= self.coupon.amount
-        return total
+        return float(total) + self.get_gst()
+
+    def get_total_amount(self):
+        total = 0
+        for order_item in self.items.all():
+            total += order_item.get_total_item_price()
+        return float(total)
+    def get_total_discount(self):
+        total = 0
+        for order_item in self.items.all():
+            total += order_item.get_amount_saved()
+        return float(total)
 
 class Address(models.Model):
     ADDRESS_CHOICES = (

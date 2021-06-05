@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% block content %}
+<output>
+    <section class="section-content padding-y bg">
+        <div class="container">
+            <div class="row">
+                    <main class="col-md-8">
+                            <article class="card mb-4">
+                                <div class="card-body">
+                                    <h4 class="card-title mb-4">Review cart</h4>
+                                    <div class="row">
+                                    {% for item in order.items.all %}
+                                        <div class="col-md-6">
+                                            <figure class="itemside  mb-4">
+                                                <div class="aside"><img src="bootstrap-ecommerce-html/images/items/1.jpg" class="border img-sm"></div>
+                                                <figcaption class="info">
+                                                    <p>{{item.item.productName}}</p>
+                                                    <span class="text-muted">{{item.quantity}}x = ${{order.get_total_amount}} </span>
+                                                </figcaption>
+                                            </figure>
+                                        </div>
+                                    {% endfor %}
+                                    </div>
+                                </div>
+                            </article>
+                            <article class="card mb-4">
+                                <form method="POST" class="card-body">
+                                {% csrf_token %}
+
+                                <h3>Shipping address</h3>
+
+                                <div class='hideable_shipping_form'>
+
+                                    <div class="md-form mb-5">
+                                    <input type='text' placeholder='1234 Main St' id='shipping_address' name='shipping_address' class='form-control' />
+                                    <label for="shipping_address" class="">Address</label>
+                                    </div>
+
+                                    <div class="md-form mb-5">
+                                    <input type='text' placeholder='Apartment or suite' id='shipping_address2' name='shipping_address2' class='form-control' />
+                                    <label for="shipping_address2" class="">Address 2 (optional)</label>
+                                    </div>
+
+                                    <div class="row">
+                                    
+                                    <div class="col-lg-4 col-md-6 mb-4">
+                                        <label for="shipping_zip">Zip</label>
+                                        <input type='text' placeholder='Zip code' id='shipping_zip' name='shipping_zip' class='form-control' />
+                                        <div class="invalid-feedback">
+                                        Zip code required.
+                                        </div>
+                                    </div>
+                                    </div>
+
+                                    
+
+                                </div>
+
+                                <hr class="mb-4">
+                                <h3>Payment option</h3>
+                                <p>ffg</p>
+                                <div class="d-block my-3">
+                                    {% for value, name in form.fields.payment_option.choices %}
+                                    <div class="custom-control custom-radio">
+                                    <input id="{{ name }}" name="payment_option" value="{{ value }}" type="radio" class="custom-control-input" required>
+                                    <label class="custom-control-label" for="{{ name }}">{{ name }}</label>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                                <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
+                                </form>
+                            </article>
+                    </main>
+                    <aside class="col-md-4">
+                        <div class="card shadow">
+                        <div class="card-body">
+                            <h4 class="mb-3">Overview</h4>
+                            <dl class="dlist-align">
+                                <dt class="text-muted">Delivery:</dt>
+                                <dd>Pick-up</dd>
+                                </dl>
+                            <dl class="dlist-align">
+                                <dt class="text-muted">Delivery type:</dt>
+                                <dd>Standart</dd>
+                            </dl>
+                            <dl class="dlist-align">
+                                <dt class="text-muted">Payment method:</dt>
+                                <dd>Cash</dd>
+                            </dl>
+                            <hr>
+                            <dl class="dlist-align">
+                                <dt>Total:</dt>
+                                <dd class="h5">${{order.get_total}}</dd>
+                            </dl>
+                            <hr>
+                            <p class="small mb-3 text-muted">By clicking you are agree with terms of condition </p>
+                        </div> <!-- card-body.// -->
+                        </div> <!-- card.// -->
+                    </aside>
+            </div>
+        </div>
+    </section>
+</output>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block content %}
+<br/>
+<br/>
+<br/>
+<br/>
+    {% for obj in orders %}
+        <main class="col-md-9">
+            <article class="card">
+            <header class="card-header">
+                <strong class="d-inline-block mr-3">Order ID: 6123456789</strong>
+                <span>Order Date: {{obj.ordered_date}}</span>
+            </header>
+            <div class="card-body">
+                <div class="row"> 
+                    <div class="col-md-8">
+                        <h6 class="text-muted">Delivery to</h6>
+                        <p>{{obj.user}} <br>  
+                        Phone {{obj.phone_number}} Email: {{obj.email}} <br>
+                            {{obj.shipping_address.street_address}}
+                            {{obj.shipping_address.apartment_address}}
+                            {{obj.shipping_address.zip}}
+                        </p>
+                    </div>
+                    <div class="col-md-4">
+                        <p>Subtotal: ${{obj.get_total_discount}} <br>
+                        Shipping fee:  ${{obj.get_total_discount}} <br> 
+                        <span class="b">Total:  ${{obj.get_total}} </span>
+                        </p>
+                    </div>
+                </div> <!-- row.// -->
+            </div> <!-- card-body .// -->
+            <div class="table-responsive">
+            <table class="table table-hover">
+                <tbody>
+                {% for item in obj.items.all %}
+                <tr>
+                    <td width="65">
+                        <img src="/media/{{item.item.logo}}" class="img-xs border">
+                    </td>
+                    <td> 
+                        <p class="title mb-0">{{item.item.productName}}</p>
+                        <var class="price text-muted">USD {{item.item.unitPrice}}</var>
+                    </td>
+                    <td> Seller <br> Nike clothing </td>
+                    <td width="250"> <a href="#" class="btn btn-outline-primary">Track order</a> <a href="#" class="btn btn-light"> Details </a> </td>
+                </tr>
+                {% endfor %}
+            </tbody></table>
+            </div> <!-- table-responsive .end// -->
+            </article> <!-- order-group.// --> 
+        </main>
+    {% endfor %}
+{% endblock %}

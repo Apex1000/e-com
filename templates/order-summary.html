@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% block content %}
+<output>
+    <section class="section-content padding-y bg">
+        <div class="container">
+            <div class="card">
+                <div class="row no-gutters">
+                    <aside class="col-md-9">
+                    {% for item in items.items.all %}
+                        <article class="card-body border-bottom">
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <figure class="itemside">
+                                            <div class="aside"><img src="/media/{{item.item.logo}}" class="border img-sm"></div>
+                                            <figcaption class="info">
+                                                <a href="#" class="title">{{item.item.productName}}</a>
+                                                <strong class="">${{item.get_total_discount_item_price}}</strong>
+                                                <div>
+                                                    {% comment %} <a href="#" class="btn-link mr-2">Save for later</a>  {% endcomment %}
+                                                    <a href="#" class="btn-link text-danger"> Delete</a>
+                                                </div>
+                                            </figcaption>
+                                        </figure> 
+                                    </div>
+                                    <div class="col-md-5 text-md-right text-right"> 
+                                        <div class="input-group input-spinner">
+                                        
+                                        <div class="input-group-prepend">
+                                            <a href="{{item.item.get_add_to_cart_url}}" class="title">
+                                                <button class="btn btn-light" type="button" id="button-plus"> <i class="fa fa-plus"></i> </button>
+                                            </a>
+                                        </div>
+                                        <input type="text" class="form-control" value="{{item.quantity}}">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-light" type="button" id="button-minus"> <i class="fa fa-minus"></i> </button>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        </article>
+                    {% endfor %}
+                    </aside>
+                    <aside class="col-md-3 border-left">
+                        <div class="card-body">
+                            <dl class="dlist-align">
+                            <dt>Total price:</dt>
+                            <dd class="text-right">${{items.get_total_amount}}</dd>
+                            </dl>
+                            <dl class="dlist-align">
+                            <dt>Discount:</dt>
+                            <dd class="text-right text-danger">- ${{items.get_total_discount}}</dd>
+                            </dl>
+                            <dl class="dlist-align">
+                            <dt>GST:</dt>
+                            <dd class="text-right text-danger">${{items.get_gst}}</dd>
+                            </dl>
+                            <dl class="dlist-align">
+                            <dt>Total:</dt>
+                            <dd class="text-right text-dark b"><strong>${{items.get_total}}</strong></dd>
+                            </dl>
+                            <hr>
+                            <a href="/checkout/" class="btn btn-primary btn-block"> Make Purchase </a>
+                            <a href="#" class="btn btn-light btn-block">Continue Shopping</a>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </section>
+</output>
+{% endblock %}
